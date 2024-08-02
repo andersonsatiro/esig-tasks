@@ -1,0 +1,63 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/functions.scss';
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 34.5rem;
+  height: 100%;
+}
+
+header {
+  @include FlexCenter(center, 0rem);
+  position: relative;
+  height: 7rem;
+  background-color: $purple-200;
+
+  img {
+    position: absolute;
+    left: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: $white-100;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+ul {
+  @include FlexCenter(start, .8rem);
+  flex-direction: column;
+  padding: 7rem 1.6rem;
+  flex-grow: 1;
+  background-color: $purple-100;
+
+  li {
+    width: 100%;
+    list-style: none;
+
+    button {
+      @include FlexCenter(start, 1.2rem);
+      width: 100%;
+      border: none;
+      border-radius: 1rem;
+      background-color: $white-50;
+      padding: 1.6rem;
+
+      img {
+        max-width: 2.4rem;
+      }
+
+      p {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $white-100;
+      }
+    }
+  }
+}
