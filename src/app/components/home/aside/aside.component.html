@@ -9,14 +9,21 @@
 
   <ul>
     <li>
-      <button>
+      <button
+        (click)="changeMainContent('btn-for-dashboard', 'btn-for-tasks', 'dashboard')"
+        id="btn-for-dashboard"
+        class="clicked"
+      >
         <img src="svg/dashboard.svg" alt="abc">
         <p>Dashboard</p>
       </button>
     </li>
 
     <li>
-      <button>
+      <button
+        (click)="changeMainContent('btn-for-tasks', 'btn-for-dashboard', 'tasks')"
+        id="btn-for-tasks"
+      >
         <img src="svg/task.svg" alt="">
         <p>Tarefas</p>
       </button>

@@ -1,12 +1,15 @@
 <router-outlet />
 
 <div class="homepage">
-  <app-aside></app-aside>
+  <app-aside (viewChange)="setView($event)"></app-aside>
   
   <div class="right-content-home">
     <app-header></app-header>
     <main>
-      <app-main-fixed-content></app-main-fixed-content>
+      <app-main-fixed-content style="width: 100%;"></app-main-fixed-content>
+      <app-dashboard *ngIf="currentView === 'dashboard'" style="width: 100%;"></app-dashboard>
+      <app-to-do-list *ngIf="currentView === 'tasks'">
+      </app-to-do-list>
     </main>
   </div>
 </div>

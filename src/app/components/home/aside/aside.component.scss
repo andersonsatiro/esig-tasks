@@ -46,17 +46,32 @@ ul {
       width: 100%;
       border: none;
       border-radius: 1rem;
-      background-color: $white-50;
+      background: transparent;
       padding: 1.6rem;
+      transition: .3s;
 
       img {
         max-width: 2.4rem;
+        opacity: 50%;
       }
 
       p {
         font-size: 1.8rem;
         font-weight: 500;
         color: $white-100;
+      }
+
+      &.clicked {
+        background-color: $white-50;
+
+        img {
+          opacity: 100%;
+        }
+      }
+      
+      &:hover {
+        cursor: pointer;
+        background-color: $white-50;
       }
     }
   }

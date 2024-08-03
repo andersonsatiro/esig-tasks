@@ -1,0 +1,9 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/functions.scss';
+
+.dashboard-sections {
+  .box-section {
+    @include FlexCenter(space-between, 3rem);
+    width: 100%;
+  }
+}

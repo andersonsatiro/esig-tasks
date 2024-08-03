@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-aside',
@@ -9,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrl: './aside.component.scss'
 })
 export class AsideComponent {
+  @Output() viewChange = new EventEmitter<string>();
 
+  changeMainContent(buttonIDAddClass: string, buttonIDRemoveClass: string, content: string){
+    const buttonAddClass = document.getElementById(buttonIDAddClass)
+    buttonAddClass?.classList.add('clicked')
+
+    const buttonRemoveClass = document.getElementById(buttonIDRemoveClass)
+    buttonRemoveClass?.classList.remove('clicked')
+
+    this.viewChange.emit(content)
+  }
 }

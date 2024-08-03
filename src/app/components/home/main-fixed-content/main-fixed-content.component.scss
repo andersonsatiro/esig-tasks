@@ -1,15 +1,8 @@
 @import '../../../../styles/functions.scss';
 @import '../../../../styles/variables.scss';
 
-.fixed-sections-main {
-  @include FlexCenter(start, 3rem);
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-
-  .main-title-section {
+.fixed-section {
     @include FlexCenter(space-between, 0rem);
-    width: 100%;
 
     div {
       display: flex;
@@ -35,7 +28,6 @@
       color: $white-100;
       background-color: $purple-100;
     }
-  }
 
   .box-section {
     display: flex;

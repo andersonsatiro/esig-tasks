@@ -1,0 +1,51 @@
+<div class="dashboard-sections">
+  <section class="box-section">
+    <app-task-data-box
+      style="width: 100%;"
+      [numberTasks]="4"
+      boxText="to do"
+      imagePath="svg/toDo.svg"
+      imageBgColor="rgba(181, 228, 255, 0.30)"
+      imageAlt="ícone de tarefas a serem feitas"
+      [pendingTask]="false"
+      [numberPendingTask]="0"
+    ></app-task-data-box>
+  
+    <app-task-data-box
+      style="width: 100%;"
+      [numberTasks]="2"
+      boxText="doing"
+      imagePath="svg/doing.svg"
+      imageBgColor="rgba(184, 128, 239, 0.20)"
+      imageAlt="ícone de tarefas sendo feitas"
+      [pendingTask]="true"
+      [numberPendingTask]="1"
+    ></app-task-data-box>
+  
+    <app-task-data-box
+      style="width: 100%;"
+      [numberTasks]="7"
+      boxText="do today"
+      imagePath="svg/doToday.svg"
+      imageBgColor="rgba(255, 162, 108, 0.20)"
+      imageAlt="ícone de tarefas para hoje"
+      [pendingTask]="false"
+      [numberPendingTask]="0"
+    ></app-task-data-box>
+  
+    <app-task-data-box
+      style="width: 100%;"
+      [numberTasks]="65"
+      boxText="done"
+      imagePath="svg/done.svg"
+      imageBgColor="rgba(181, 255, 224, 0.40)"
+      imageAlt="ícone de tarefas concluídas"
+      [pendingTask]="false"
+      [numberPendingTask]="0"
+    ></app-task-data-box>
+  </section>
+
+  <section>
+    <h1>o gráfico ficará aqui</h1>
+  </section>
+</div>
