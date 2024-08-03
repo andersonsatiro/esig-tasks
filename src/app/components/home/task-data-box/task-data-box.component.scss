@@ -1,0 +1,56 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/functions.scss';
+
+.box {
+  @include FlexCenter(space-between, 0rem);
+  padding: 3.4rem 3rem;
+  background-color: $white;
+  border-radius: .8rem;
+  width: 100%;
+
+  .left-content {
+    font-weight: 800;
+    color: $gray-100;
+
+    .pending-task {
+      display: flex;
+      gap: .7rem;
+      align-items: end;
+
+      div {
+        position: relative;
+
+        div {
+          width: 1rem;
+          height: 1rem;
+          right: -2px;
+          top: 0;
+          position: absolute;
+          border-radius: 100%;
+          background-color: $red-100;
+        }
+      }
+      
+      p {
+        font-size: 1.3rem;
+        color: $gray-100;
+        font-weight: 600;
+      }
+    }
+
+    h1 {
+      font-size: 3.4rem;
+      line-height: 3.4rem;
+    }
+  
+    h4 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .right-content {
+    width: 7.2rem;
+    padding: 1.9rem;
+    border-radius: 1rem;
+  }
+}

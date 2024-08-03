@@ -1,0 +1,27 @@
+<div class="box">
+
+  <div class="left-content">
+
+    <div class="pending-task" *ngIf="pendingTask; else noPendingTask">
+      <div>
+        <h1>{{ numberTasks }}</h1>
+        <div></div>
+      </div>
+      <p>
+        {{ numberPendingTask }} {{numberPendingTask === 1 ? 'tarefa' : 'tarefas'}}
+        em atraso!
+      </p>
+    </div>
+
+    <ng-template #noPendingTask>
+      <h1>{{ numberTasks }}</h1>
+    </ng-template>
+
+    <h4>{{ boxText }}</h4>
+
+  </div>
+
+  <div class="right-content" [style.background-color]="imageBgColor">
+    <img src={{imagePath}} alt={{imageAlt}}>
+  </div>
+</div>
