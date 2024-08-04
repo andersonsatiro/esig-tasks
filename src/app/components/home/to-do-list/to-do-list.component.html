@@ -1,2 +1,102 @@
-<p>to-do-list works!</p>
+<div class="to-do-list-section">
+  <form action="">
+    <input type="text" name="task" placeholder="buscar por tarefa" required>
+    <app-input-select
+      value=""
+    >
+    </app-input-select>
+  </form>
+
+  <table>
+    <tr>
+      <th><img src="svg/checkbox.svg" alt="ícone de checkbox não selecionado"></th>
+      <th>tarefa</th>
+      <th>prioridade</th>
+      <th>responsável</th>
+      <th>status</th>
+      <th>data</th>
+      <th>esconder</th>
+    </tr>
+
+    <tr *ngFor="let task of tasks">
+      <td><img src="svg/checkbox.svg" alt="ícone de checkbox não selecionado"></td>
+      <td>{{task.task}}</td>
+
+      <td class="cell-by-colors">
+        <div
+          class="cell-by-colors-content"
+          [ngStyle]="{'background-color': getPriorityColor(task.priority, 'bg'),
+          'color': getPriorityColor(task.priority, 'text')}"
+        >
+          <div
+            [ngStyle]="{'background-color': getPriorityColor(task.priority, 'text')}"
+          ></div>
+          <p>{{task.priority}}</p>
+        </div>
+      </td>
+
+      <td>{{task.responsible}}</td>
+
+      <td class="cell-by-colors">
+        <div
+          class="cell-by-colors-content"
+          [ngStyle]="{'background-color': getStatusColor(task.status, 'bg'),
+          'color': getStatusColor(task.status, 'text')}"
+        >
+          <div
+            [ngStyle]="{'background-color': getStatusColor(task.status, 'text')}"
+          ></div>
+          <p>{{task.status}}</p>
+        </div>
+      </td>
+
+      <td>{{task.end_date}}</td>
+      <td>
+        <img src="svg/open-eye.svg" alt="dd">
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<!--
+
+    <tr>
+      <td><img src="svg/checkbox.svg" alt="ícone de checkbox não selecionado"></td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+      <td class="priority-cell">
+        <div class="priority-cell-content">
+          <div></div>
+          <p>alta</p>
+        </div>
+      </td>
+      <td>Maria Vicente</td>
+      <td>em andamento</td>
+      <td>04/08/2024</td>
+      <td>icone</td>
+      <td>editar</td>
+    </tr>
+
+
+
+
+    <tr>
+      <td><img src="svg/checkbox.svg" alt="ícone de checkbox não selecionado"></td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+      <td class="priority-cell">
+        <div class="priority-cell-content">
+          <div></div>
+          <p>alta</p>
+        </div>
+      </td>
+      <td>Ricardo Moreira</td>
+      <td>não iniciada</td>
+      <td>04/08/2024</td>
+      <td>icone</td>
+      <td>editar</td>
+    </tr>
+
+
+
+-->
 
