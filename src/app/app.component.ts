@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AsideComponent } from './components/home/aside/aside.component';
 import { HeaderComponent } from './components/home/header/header.component';
@@ -6,16 +6,19 @@ import { MainFixedContentComponent } from './components/home/main-fixed-content/
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { ToDoListComponent } from './components/home/to-do-list/to-do-list.component';
 import { CommonModule } from '@angular/common';
-
-type taskPriority = 'alta' | 'média' | 'baixa'
-type taskStatus = 'não iniciada' | 'em andamento' | 'para hoje' | 'entregue'
+import { TasksService } from './services/tasks.service';
+import { defaultIfEmpty, map, Observable, of } from 'rxjs';
 
 interface Task {
-  task: string,
-  priority: taskPriority,
-  responsible: string,
-  status: taskStatus,
-  end_date: string,
+  id: string;
+  description: string;
+  priority: string;
+  responsible: string;
+  status: string;
+  creation_date: string;
+  expected_delivery_date: string;
+  actual_delivery_date?: string;
+  update_at?: string
 }
 
 @Component({
@@ -34,47 +37,20 @@ interface Task {
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  @Input() tasks: Task[] = [
-    {
-      task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      priority: 'alta',
-      responsible: 'José Augusto',
-      status: 'entregue',
-      end_date: 'Seg, 11 jun, 2024',
-    },
-    {
-      task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      priority: 'média',
-      responsible: 'Maria Vicente',
-      status: 'em andamento',
-      end_date: 'Ter, 39 ago, 2024',
-    },
-    {
-      task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      priority: 'baixa',
-      responsible: 'Ricardo Moreira',
-      status: 'não iniciada',
-      end_date: 'Qua, 05 ago, 2024',
-    },
-    {
-      task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      priority: 'alta',
-      responsible: 'Théo Henrique',
-      status: 'para hoje',
-      end_date: 'Qui, 08 set, 2024',
-    },
-    {
-      task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      priority: 'baixa',
-      responsible: 'Noberto Silva',
-      status: 'entregue',
-      end_date: 'Sex, 23 out, 2024',
-    }
-  ];
   title = 'esig-tasks';
   currentView: string = 'tasks';
   
+  tasks$: Observable<Task[]> = new Observable<Task[]>()
+
+  constructor(private taskService: TasksService){}
+  
   setView(view: string) {
     this.currentView = view;
+  }
+  
+  ngOnInit(): void {
+    this.taskService.fetchData('http://localhost:3333/tasks').subscribe(response => {
+      this.tasks$ = of(response)
+    })
   }
 }

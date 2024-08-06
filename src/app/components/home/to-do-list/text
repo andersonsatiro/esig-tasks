@@ -1,7 +1,7 @@
 <h1 *ngIf="isTasksEmptyOrNull; else emptyTable">A tabela está vazia. Adicione uma tarefa.</h1>
 
-<ng-template #emptyTable>
-  <div class="to-do-list-section" >
+<div class="to-do-list-section" >
+  <ng-template #emptyTable>
     <form action="">
       <input type="text" name="task" placeholder="buscar por tarefa" required>
       <app-input-select
@@ -74,6 +74,5 @@
         </td>
       </tr>
     </table>
-  </div>
-</ng-template>
-
+  </ng-template>
+</div>

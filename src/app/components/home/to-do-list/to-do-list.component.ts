@@ -1,16 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { InputSelectComponent } from '../input-select/input-select.component';
 import { CommonModule } from '@angular/common';
-
-type taskPriority = 'alta' | 'média' | 'baixa'
-type taskStatus = 'não iniciada' | 'em andamento' | 'para hoje' | 'entregue'
+import { TasksService } from '../../../services/tasks.service';
 
 interface Task {
-  task: string,
-  priority: taskPriority,
-  responsible: string,
-  status: taskStatus,
-  end_date: string,
+  id: string;
+  description: string;
+  priority: string;
+  responsible: string;
+  status: string;
+  creation_date: string;
+  expected_delivery_date: string;
+  actual_delivery_date?: string;
+  update_at?: string
 }
 
 @Component({
@@ -24,7 +26,10 @@ interface Task {
   styleUrl: './to-do-list.component.scss'
 })
 export class ToDoListComponent {
-  @Input() tasks: Task[] = [];
+  @Input() tasks: Task[] | null = []
+  trashItems: Task[] | null = [] 
+
+  constructor(private taskService: TasksService){}
 
   getPriorityColor(priority: string, local: string){
     switch (priority) {
@@ -48,5 +53,44 @@ export class ToDoListComponent {
       default:
         return local === 'bg' ? '#CCFDD9' : '#409261'
     }
+  }
+
+  selectAllTasks(imgClass: string){
+    const images = document.getElementsByClassName(imgClass)
+    for(let i = 0; i < images.length; i++){
+      if(images[i].getAttribute('src') === 'svg/checkbox.svg'){
+        images[i].setAttribute('src', 'svg/checkbox-selected.svg')
+        this.trashItems = this.tasks
+      } else {
+        images[i].setAttribute('src', 'svg/checkbox.svg')
+        this.trashItems = []
+      }
+    }
+  }
+
+  get isTrashEmptyOrNull(): boolean {
+    return !this.trashItems || this.trashItems.length === 0;
+  }
+
+  removeSelected() {
+    let idsToRemove: any = []
+    if(this.trashItems){
+      idsToRemove = this.trashItems.map(item => item.id);
+    }
+    if (idsToRemove.length > 0) {
+      try {
+        this.taskService.removeData('http://localhost:3333/remover-tarefa', idsToRemove).subscribe(() => {
+          this.tasks = [];
+          this.trashItems = [];
+          this.selectAllTasks('checkbox')
+        });
+      }catch(error){
+        console.error(error)
+      }
+    }
+  }
+
+  get isTasksEmptyOrNull(): boolean {
+    return !this.tasks || this.tasks.length === 0;
   }
 }
