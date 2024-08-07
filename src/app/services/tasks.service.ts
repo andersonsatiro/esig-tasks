@@ -14,6 +14,19 @@ interface Task {
   update_at ?: string
 }
 
+interface NewTask {
+  id?: string;
+  description: string;
+  priority: string;
+  responsible: string;
+  status: string;
+  creation_date: string;
+  expected_delivery_date: string;
+  actual_delivery_date?: string;
+  update_at ?: string
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +47,15 @@ export class TasksService {
   removeData(url: string, ids: string[]): Observable<void> {
     return this.httpClient.request<void>('PUT', url, {
       body: { ids },
+      headers: { 'Content-Type': 'application/json' },
+    }).pipe(
+      catchError(() => of(void 0))
+    );
+  }
+
+  addData(url: string, task: NewTask) {
+    return this.httpClient.request<void>('POST', url, {
+      body: task,
       headers: { 'Content-Type': 'application/json' },
     }).pipe(
       catchError(() => of(void 0))

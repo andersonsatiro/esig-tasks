@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-main-fixed-content',
@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './main-fixed-content.component.scss'
 })
 export class MainFixedContentComponent {
+  @Output() openModal = new EventEmitter()
+
+  handleOpenModal(){
+    this.openModal.emit()
+  }
 }

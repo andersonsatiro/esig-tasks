@@ -1,14 +1,146 @@
 @import '../styles/variables.scss';
+@import '../styles/functions.scss';
 
 .homepage {
   display: flex;
-  height: 100%;
+  min-height: 100%;
+  position: relative;
+  background-color: aqua;
+
+  .modal-bg {
+    @include FlexCenter(center, 0rem);
+    align-items: start;
+    padding-top: 15%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.603);
+
+    .modal-content {
+      border-radius: 1.2rem;
+      background-color: $white;
+      min-width: 76rem;
+
+      header {
+        @include FlexCenter(space-between, 0rem);
+        padding: 4rem 3.4rem 0rem 3.4rem;
+        position: relative;
+
+        .success {
+          @include FlexCenter(center, 1rem);
+          position: absolute;
+
+          p{
+            font-size: 1.4rem;
+            line-height: 1.2rem;
+            font-weight: 700;
+            color: $green-100;
+          }
+        }
+
+        h2 {
+          font-size: 2.4rem;
+          font-weight: bold;
+          color: $gray-100;
+        }
+  
+        img {  
+          &:hover {
+            cursor: pointer;
+            opacity: 85%;
+          }
+        }
+      }
+
+      form {
+        @include FlexCenter(center, 2rem);
+        flex-direction: column;
+        padding: 6rem 11rem 4.8rem 11rem;
+
+        input, select {
+          width: 100%;
+          padding: 1.6rem 2rem;
+
+          font-weight: 500;
+          font-size: 1.6rem;
+          color: $gray-100;
+          background-color: transparent;
+          border: 1px solid $white-300;
+          border-radius: 1rem;
+        }
+
+        .smaller-fields {
+          @include FlexCenter(center, 2rem);
+          width: 100%;
+
+          input {
+            flex-grow: 1;
+            width: 100%;
+          }
+        }
+
+        .responsable-field{
+          width: 100%;
+          @include FlexCenter(center, 0rem);
+          position: relative;
+          
+          img {
+            position: absolute;
+            right: 0;
+            margin-right: 2rem;
+          }
+        }
+
+        .buttons {
+          @include FlexCenter(center, 1.2rem);
+
+          input, button {
+            padding: 1.6rem;
+            height: 5.6rem;
+            transition: .3s;
+
+            &.clear {
+              font-weight: 700;
+              font-size: 1.4rem;
+              color: $gray-100;
+              background-color: $rose-100;
+
+              &:hover {
+                background-color: $rose-50;
+                cursor: pointer;
+              }
+            }
+
+            &.submit {
+              @include FlexCenter(center, 1.2rem);
+              border: none;
+              background-color: #6261B4;
+              border-radius: 1rem;
+
+              &:hover {
+                background-color: $purple-200;
+                cursor: pointer;
+              }
+
+              p {
+                font-weight: 500;
+                font-size: 1.4rem;
+                color: $white-100;
+                text-wrap: nowrap;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   .right-content-home {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    flex-grow: 1;
 
     main {
       display: flex;
