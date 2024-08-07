@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AsideComponent } from './components/home/aside/aside.component';
-import { HeaderComponent } from './components/home/header/header.component';
 import { MainFixedContentComponent } from './components/home/main-fixed-content/main-fixed-content.component';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { ToDoListComponent } from './components/home/to-do-list/to-do-list.component';
@@ -46,7 +45,6 @@ export interface NewTask {
   imports: [
     RouterOutlet,
     AsideComponent,
-    HeaderComponent,
     MainFixedContentComponent,
     DashboardComponent,
     ToDoListComponent,
@@ -72,7 +70,7 @@ export class AppComponent {
   }
   
   ngOnInit(): void {
-    this.taskService.fetchData('http://localhost:3333/tasks').subscribe(response => {
+    this.taskService.fetchData('https://esig-tasks-server.onrender.com/tasks').subscribe(response => {
       this.tasks$ = of(response)
     })
   }
@@ -97,7 +95,7 @@ export class AppComponent {
       };
 
       try {
-        this.taskService.addData('http://localhost:3333/criar-tarefa', data).subscribe(() => {
+        this.taskService.addData('https://esig-tasks-server.onrender.com/criar-tarefa', data).subscribe(() => {
           this.taskCreated = true
           this.ngOnInit()
           setTimeout(() => {

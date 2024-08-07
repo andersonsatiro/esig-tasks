@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { InputSelectComponent } from '../input-select/input-select.component';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../../services/tasks.service';
 
@@ -19,7 +18,6 @@ interface Task {
   selector: 'app-to-do-list',
   standalone: true,
   imports: [
-    InputSelectComponent,
     CommonModule
   ],
   templateUrl: './to-do-list.component.html',
@@ -79,7 +77,7 @@ export class ToDoListComponent {
     }
     if (idsToRemove.length > 0) {
       try {
-        this.taskService.removeData('http://localhost:3333/remover-tarefa', idsToRemove).subscribe(() => {
+        this.taskService.removeData('https://esig-tasks-server.onrender.com/remover-tarefa', idsToRemove).subscribe(() => {
           this.tasks = [];
           this.trashItems = [];
           this.selectAllTasks('checkbox')

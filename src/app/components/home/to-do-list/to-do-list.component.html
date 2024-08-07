@@ -1,15 +1,7 @@
 <h1 *ngIf="isTasksEmptyOrNull; else emptyTable">A tabela está vazia. Adicione uma tarefa.</h1>
 
 <ng-template #emptyTable>
-  <div class="to-do-list-section" >
-    <form action="">
-      <input type="text" name="task" placeholder="buscar por tarefa" required>
-      <app-input-select
-        value=""
-      >
-      </app-input-select>
-    </form>
-
+  <div class="to-do-list-section">
     <button
       id="remove-all-button"
       *ngIf="!isTrashEmptyOrNull"
@@ -33,7 +25,6 @@
         <th>responsável</th>
         <th>status</th>
         <th>data</th>
-        <th>esconder</th>
       </tr>
 
       <tr *ngFor="let task of tasks">
@@ -69,9 +60,6 @@
         </td>
 
         <td>{{task.expected_delivery_date.substring(0, 15)}}</td>
-        <td>
-          <img src="svg/open-eye.svg" alt="ícone para esconder tarefa">
-        </td>
       </tr>
     </table>
   </div>
